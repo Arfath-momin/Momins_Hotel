@@ -17,7 +17,7 @@ export default function Home() {
       {/*Hero Section*/}
       <div className="px-2 relative bg-cover bg-center bg-overlay-gradient flex flex-col justify-center gap-6 items-center py-20 lg:py-60 ">
         <h2 className="relative z-10 text-center text-white text-4xl lg:text-6xl ">Luxurious Hotel Experience</h2>
-        <Link href={"/"}><button className=' bg-[#b99470] text-white px-2 py-2 hover:bg-[#b8895b] '>View Rooms</button></Link>
+        <Link href={"/rooms"}><button className=' bg-[#b99470] text-white px-2 py-2 hover:bg-[#b8895b] '>View Rooms</button></Link>
       </div>
 
       {/* Welcome */}

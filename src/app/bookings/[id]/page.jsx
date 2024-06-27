@@ -263,46 +263,46 @@ function page() {
       <div className="w-full">
         <h2 className='text-black text-2xl mb-6 text-center'>Billing Details</h2>
         <form action="" className='grid lg:grid-cols-2 lg:gap-6'>
-        <div className="flex flex-col  ">
+        <div className="">
         <label className='text-black text-lg mb-2' htmlFor="">First Name</label>
-        <input type="text" className=' text-black pl-2 py-2 mb-6 border border-[#c0c6c7] border-1 bg-white' />
+        <input type="text" className='w-full text-black pl-2 py-2 mb-6 border border-[#c0c6c7] border-1 bg-white' />
          </div>
-         <div className="flex flex-col">
+         <div className="">
          <label className='text-black text-lg mb-2' htmlFor="">Last Name</label>
-         <input type="text" className=' text-black pl-2 py-2 mb-6 border border-[#c0c6c7] border-1 bg-white' />
+         <input type="text" className='w-full text-black pl-2 py-2 mb-6 border border-[#c0c6c7] border-1 bg-white' />
          </div>
-         <div className="flex flex-col lg:col-span-2">
+         <div className=" lg:col-span-2">
          <label className='text-black text-lg mb-2' htmlFor="">Country Of Origin</label>
-          <select name="" id="" className=' pl-2 text-black py-2 mb-6 border border-[#c0c6c7] border-1 bg-white'>
+          <select name="" id="" className='w-full pl-2 text-black py-2 mb-6 border border-[#c0c6c7] border-1 bg-white'>
             <option value="">Select Country</option>
             {countries().map((country) => (
               <option value={country.code}>{country.name}</option>
             ))}
           </select>
          </div>
-         <div className="flex flex-col">
+         <div className="">
          <label className='text-black text-lg mb-2' htmlFor="">Town / City</label>
-         <input type="text" className=' pl-2 text-black py-2 mb-6 border border-[#c0c6c7] border-1 bg-white' />
+         <input type="text" className='w-full pl-2 text-black py-2 mb-6 border border-[#c0c6c7] border-1 bg-white' />
          </div>
-         <div className="flex flex-col">
+         <div className="">
          <label className='text-black text-lg mb-2' htmlFor="">Pin Code</label>
-         <input type="number" className=' pl-2 text-black py-2 mb-6 border border-[#c0c6c7] border-1 bg-white' />
+         <input type="number" className='w-full pl-2 text-black py-2 mb-6 border border-[#c0c6c7] border-1 bg-white' />
          </div>
-         <div className="flex flex-col lg:col-span-2">
+         <div className=" lg:col-span-2">
          <label className='text-black text-lg mb-2' htmlFor="">State</label>
-         <input type="text" className=' pl-2 text-black py-2 mb-6 border border-[#c0c6c7] border-1 bg-white' />
+         <input type="text" className='w-full pl-2 text-black py-2 mb-6 border border-[#c0c6c7] border-1 bg-white' />
          </div>
-         <div className="flex flex-col lg:col-span-2">
+         <div className=" lg:col-span-2">
          <label className='text-black text-lg mb-2' htmlFor="">Phone Number</label>
-         <input type="tel" className='lg:col-span-1 pl-2 text-black py-2 mb-6 border border-[#c0c6c7] border-1 bg-white' />
+         <input type="tel" className='w-full lg:col-span-1 pl-2 text-black py-2 mb-6 border border-[#c0c6c7] border-1 bg-white' />
          </div>
-         <div className="flex flex-col lg:col-span-2">
+         <div className=" lg:col-span-2">
          
          <label className='text-black text-lg mb-2' htmlFor="">Email Address</label>
-          <input type="email" className=' pl-2 text-black py-2 mb-6 border border-[#c0c6c7] border-1 bg-white' />
+          <input type="email" className='w-full pl-2 text-black py-2 mb-6 border border-[#c0c6c7] border-1 bg-white' />
          </div>
-         <div className="flex flex-col lg:col-span-2">
-         <label className='text-black text-lg mb-2' htmlFor="">Select Dates</label>
+         <div className=" lg:col-span-2">
+         <label className='w-full text-black text-lg mb-2' htmlFor="">Select Dates</label>
          <DateRangePicker />
          </div>
          
