@@ -1,9 +1,14 @@
-import React from 'react'
+'use client'
 import { TiTick } from "react-icons/ti";
 import { IoMdMail } from "react-icons/io";
+
+
+
 function page() {
+
     return (
         <div className='bg-[#f2f2f3] gap-10 flex flex-col xl:gap-14 justify-start items-center py-10 lg:py-36 px-2 lg:px-60'>
+           
             <div className="space-y-2">
                 <TiTick size={42} color='#ffffff' style={{ backgroundColor: "#b99470", borderRadius: "50%", margin: "auto" }} />
                 <h2 className='text-black text-2xl mb-6 text-center'>Booking Complete!</h2>

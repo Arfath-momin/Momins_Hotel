@@ -15,6 +15,7 @@
     "@next/third-parties": "^14.2.4",
     "country-json": "^2.2.3",
     "date-fns": "^3.6.0",
+    "mongoose": "^8.4.4",
     "next": "14.2.4",
     "react": "^18",
     "react-datepicker": "^7.1.0",

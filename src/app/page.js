@@ -9,6 +9,8 @@ import { BsBuildings } from "react-icons/bs";
 import { LiaSwimmingPoolSolid } from "react-icons/lia";
 import { FaCompass } from "react-icons/fa";
 import { FaSubway } from "react-icons/fa";
+
+
 export default function Home() {
 
   return (
