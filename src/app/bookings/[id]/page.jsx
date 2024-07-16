@@ -30,7 +30,7 @@ function Page() {
  useEffect(() => {
   const fetchRoomData = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/api/rooms/${id}`, {
+      const res = await fetch(`https://momins-hotel.vercel.app/api/rooms/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

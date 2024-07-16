@@ -2,7 +2,7 @@
 
 const getRooms = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/rooms", {
+    const res = await fetch("https://momins-hotel.vercel.app/api/rooms", {
       cache: "no-cache",
     });
     
