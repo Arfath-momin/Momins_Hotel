@@ -2,7 +2,7 @@ import connectDb from "@/app/libs/mongoose";
 import Room from "@/app/models/rooms.model";
 import { NextResponse } from "next/server";
 
-export async function GET( req,{ params }) {
+export async function GET({ params }) {
     await connectDb();
     const { id } = params;
 
