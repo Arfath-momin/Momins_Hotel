@@ -1,29 +1,12 @@
 'use client';
 import React from 'react';
 import roomBanner from "../../../public/assets/08.jpg";
+import room_details from '../utils/room_details';
+import Link from 'next/link';
+import RoomAvailability from '../middlewares/availability_middleware';
 
-const getRooms = async () => {
-  try {
-    const res = await fetch("https://momins-hotel.vercel.app/api/rooms", {
-      cache: "no-cache",
-    });
-
-    if (!res.ok) {
-      throw new Error("Request failed");
-    }
-
-    const data = await res.json();
-
-    return data;
-  } catch (error) {
-    console.error(error);
-    return { Room: [] }; // Provide a default value
-  }
-};
-
-const Page = async () => {
-  let Room = [];
-  Room = await getRooms();
+const Page = () => {
+  const Room = room_details;
 
   return (
     <div>
@@ -44,7 +27,8 @@ const Page = async () => {
                 <div className="divider"></div>
                 <div className="mb-8 mx-8 flex justify-between">
                   <button className='bg-[#b99470] text-white px-2 py-2 hover:bg-[#b8895b] w-1/2'>₹ {item.price} / Night</button>
-                  <a href={`/bookings/${item._id}`} className='underline underline-offset-8 self-end text-[#656a70] mt-[10px]'>Book Now</a>
+                  <RoomAvailability id={item.id} qty={item.qty}  />
+                
                 </div>
               </div>
             ))}

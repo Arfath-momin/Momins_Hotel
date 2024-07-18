@@ -1,33 +1,7 @@
-'use server';
-
-const getRooms = async () => {
-  try {
-    const res = await fetch("https://momins-hotel.vercel.app/api/rooms", {
-      cache: "no-cache",
-    });
-    
-    
-    if (!res.ok) {
-      throw new Error("Request failed");
-    }
-    
-    const data = await res.json();
-    
-    
-    return data;
-    
-  } catch (error) {
-    console.error(error);
-    return { Rooms: [] }; // Provide a default value
-  }
-};
-
-const RoomCard = async() => {
-  let Rooms = []
-   Rooms = await getRooms();
-  console.log(Rooms)
- 
-
+'use client';
+import room_details from "../utils/room_details";
+const RoomCard = () => {
+  const Rooms = room_details;
   return (
   
     <div className="p-4">

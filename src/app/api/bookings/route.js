@@ -2,47 +2,44 @@
 
 import connectDb from "@/app/libs/mongoose";
 import Booking from "@/app/models/bookings.model";
-import Room from "@/app/models/rooms.model"; // Adjust as per your model file name
+
 import { NextResponse } from "next/server";
 import total from "@/app/utils/total"; // Import the total utility function
 
 export async function POST(req) {
     try {
-        const { firstName, lastName, countryOfOrigin, townCity, pincode, state, phoneNumber, emailAddress, roomId, startDate, endDate } = await req.json();
+        const { firstName, lastName, countryOfOrigin, townCity, pincode, state, phoneNumber, emailAddress, roomId, single_room, startDate, endDate } = await req.json();
 
         await connectDb();
+    
 
-        // Verify if room exists
-        const room = await Room.findById(roomId);
-        if (!room) {
-            return NextResponse.json({ message: "Room not found" }, { status: 404 });
-        }
+        const price = single_room.price;
+       
 
-        const isRoomAvailable = await Booking.find({ roomId: roomId });
-        if (isRoomAvailable.length >= room.quantity) {
-            return NextResponse.json({ message: "Room not available" }, { status: 404 });
-        }
 
-        const { totalPrice, totalNights } = total({ startDate, endDate, price: room.price });
 
-        await Booking.create({
-            firstName,
-            lastName,
-            countryOfOrigin,
-            townCity,
-            pincode,
-            state,
-            phoneNumber,
-            emailAddress,
-            roomId,
-            startDate,
-            endDate,
-            totalNights,
-            totalPrice
-        });
+     
+    
+            const { totalPrice, totalNights } = total({ startDate, endDate, price });
 
-        return NextResponse.json({ message: "Booking successfully created" }, { status: 201 });
+            await Booking.create({
+                firstName,
+                lastName,
+                countryOfOrigin,
+                townCity,
+                pincode,
+                state,
+                phoneNumber,
+                emailAddress,
+                roomId,
+                startDate,
+                endDate,
+                totalNights,
+                totalPrice
+            });
 
+            return NextResponse.json({ message: "Booking successfully created" }, { status: 201 });
+        
     } catch (error) {
         console.error("Error creating booking:", error);
         return NextResponse.json({ message: "Error creating booking", error: error.message }, { status: 500 });
@@ -79,14 +76,15 @@ export async function DELETE() {
 }
 
 
-export async function GETSingle({params}) {
-    try {
-        await connectDb();
-        const result = await Booking.findById({params});
-        console.log("result from be",result)
-        return NextResponse.json(result, { status: 200 });
-    } catch (error) {
-        console.error("Error fetching bookings:", error);
-        return NextResponse.json({ message: "Error fetching bookings", error: error.message }, { status: 500 });
-    }
-}
+// export async function GETSingle({ params }) {
+//     try {
+//         await connectDb();
+//         const result = await Booking.findById({ params });
+//         console.log("result from be", result)
+//         return NextResponse.json(result, { status: 200 });
+//     } catch (error) {
+//         console.error("Error fetching bookings:", error);
+//         return NextResponse.json({ message: "Error fetching bookings", error: error.message }, { status: 500 });
+//     }
+// }
+

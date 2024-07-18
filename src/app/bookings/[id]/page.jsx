@@ -1,11 +1,11 @@
 'use client'
-import DateRangePicker from '@/app/components/DatePicker'
-import React, { use, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
+import DateRangePicker from '@/app/components/DatePicker'
 import RoomPreview from '@/app/components/RoomPreview'
+import room from '@/app/utils/room_details'  // Adjust the import path according to your project structure
 
 const countries = () => {
-  // Country list...
   return [
     { name: 'Afghanistan', code: 'AF' },
     { name: 'Åland Islands', code: 'AX' },
@@ -25,52 +25,38 @@ function Page() {
   const [emailAddress, setEmailAddress] = useState("")
   const [startDate, setStartDate] = useState(null)
   const [endDate, setEndDate] = useState(null)
-
- const [room, setRoom] = useState("")
- useEffect(() => {
-  const fetchRoomData = async () => {
-    try {
-      const res = await fetch(`https://momins-hotel.vercel.app/api/rooms/${id}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      })
-      if (res.ok) {
-        const roomData = await res.json()
-       
-     
-    
-        
-        
-        setRoom(roomData);
-      } else {
-        console.error('Failed to fetch room data')
-      }
-    } catch (error) {
-      console.error('Error fetching room data:', error)
-    }
-  }
-
-  fetchRoomData()
-}, [endDate])
-
-
-const totalNights = (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24);
-console.log("totalNights", totalNights);
-
-
+  const [single_room, setSingleRoom] = useState({
+    id: 0,
+    name: "",
+    description: "",
+    price: 0,
+    qty: 0,
+    image: "",
+  })
 
   const router = useRouter()
   const { id } = useParams()
+
+  useEffect(() => {
+    if (id) {
+      const singleRoom = room.find(room => room.id === parseInt(id))
+ 
+      setSingleRoom(singleRoom)
+    }
+  }, [id])
+  // console.log(single_room)
+  const totalNights = startDate && endDate ? (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24) : 0
+//   const price = single_room ? single_room.price : 0
+
+//  const qty = single_room ? single_room.qty  : 1
+//  console.log(qty)
+console.log(single_room)
   
-
-
 
   const handleData = async (e) => {
     e.preventDefault()
     try {
-      const res = await fetch(`https://momins-hotel.vercel.app/api/bookings`, {
+      const res = await fetch(`/api/bookings`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -82,28 +68,26 @@ console.log("totalNights", totalNights);
           state,
           phoneNumber,
           emailAddress,
-          roomId: id,
+          single_room,
           startDate,
           endDate,
+          roomId: id,
         })
       })
 
       if (res.ok) {
         router.push(`bookings/confirm`) // Redirect on success
       } else {
-        // Handle error
         console.error('Submission failed')
       }
     } catch (error) {
       console.error('Error:', error)
     }
   }
-
-
   return (
     <div className="bg-[#f2f2f3] gap-10 flex flex-col xl:gap-14 justify-start items-center py-10 lg:py-36 px-2 lg:px-60">
       {/* Room Preview */}
-     
+      {/* Add RoomPreview component if necessary */}
 
       {/* Billing Details */}
       <div className="w-full">
@@ -150,14 +134,12 @@ console.log("totalNights", totalNights);
             <label className='w-full text-black text-lg mb-2' htmlFor="dateRange">Select Dates</label>
             <DateRangePicker setStartDate={setStartDate} setEndDate={setEndDate} />
           </div>
-          <RoomPreview room={room} totalNights={totalNights} />
+          {single_room && <RoomPreview room={single_room} totalNights={totalNights} />}
           <div className="lg:col-span-2 flex justify-center">
             <button className="bg-[#2e2e2e] text-white px-4 py-2 text-center transition-all duration-400 rounded" type="submit">Confirm Order</button>
           </div>
         </form>
-        
       </div>
-     
     </div>
   );
 }
