@@ -14,7 +14,7 @@ function RoomAvailability({ id, qty }) {
     const fetchBookingCount = async (roomId) => {
         try {
             console.log("room id", roomId);
-            const response = await fetch(`/api/validate/${roomId}`, {
+            const response = await fetch(`https://momins-hotel.vercel.app/api/validate/${roomId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
