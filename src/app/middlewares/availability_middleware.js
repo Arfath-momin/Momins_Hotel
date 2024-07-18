@@ -34,11 +34,10 @@ function RoomAvailability({ id, qty }) {
                 console.error('Error fetching booking count:', error);
             }
             attempts += 1;
-            await new Promise(resolve => setTimeout(resolve, attempts * 1000)); // Exponential backoff
+            await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempts) * 1000)); // Exponential backoff
         }
         console.error('Max retries reached');
     };
-    
 
     useEffect(() => {
         if (bookingCount !== null) {
