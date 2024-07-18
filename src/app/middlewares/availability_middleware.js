@@ -19,9 +19,6 @@ function RoomAvailability({ id, qty }) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                query: {
-                    id: roomId,
-                },
             });
             if (response.ok) {
                 const count = await response.json();
