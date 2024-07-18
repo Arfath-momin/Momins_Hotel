@@ -56,7 +56,7 @@ console.log(single_room)
   const handleData = async (e) => {
     e.preventDefault()
     try {
-      const res = await fetch(`https://momins-hotel.vercel.app/api/bookings`, {
+      const res = await fetch(`https://momins.netlify.app/api/bookings`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

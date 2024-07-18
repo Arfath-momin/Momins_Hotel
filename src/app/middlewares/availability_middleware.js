@@ -17,7 +17,7 @@ function RoomAvailability({ id, qty }) {
         while (attempts < maxRetries) {
             try {
                 console.log("room id", roomId);
-                const response = await fetch(`https://momins-hotel.vercel.app/api/validate/${roomId}`, {
+                const response = await fetch(`/https://momins.netlify.app/api/validate/${roomId}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
